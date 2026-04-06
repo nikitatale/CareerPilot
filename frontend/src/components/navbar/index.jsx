@@ -131,7 +131,7 @@ const requestCount = incomingRequests?.length || 0;
                   <Image
                     width={100}
                     height={100}
-                    src={`http://localhost:8080/uploads/${userPic}`}
+                    src={`https://careerpilot-p9bi.onrender.com/uploads/${userPic}`}
                     alt={userName}
                     className="w-8 h-8 rounded-full object-cover border border-purple-500/40"
                   />
