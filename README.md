@@ -122,8 +122,8 @@ CareerPilot/
 
 | Service  | Link                                  |
 | -------- | ------------------------------------- |
-| Frontend | https://career-pilot.vercel.app       |
-| Backend  | https://careerpilot-p9bi.onrender.com |
+| Demo | https://career-pilot-omega.vercel.app       |
+
 
 ---
 
