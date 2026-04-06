@@ -1,0 +1,651 @@
+.profileBanner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #0d0f17;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+}
+
+.profileBannerGlow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.4) 0%, rgba(192, 38, 211, 0.3) 50%, rgba(124, 58, 237, 0.1) 100%);
+}
+
+.profileBannerOrb1 {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.5) 0%, transparent 70%);
+    top: -80px;
+    left: -40px;
+    animation: orbFloat 6s ease-in-out infinite;
+}
+
+.profileBannerOrb2 {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192, 38, 211, 0.4) 0%, transparent 70%);
+    bottom: -60px;
+    right: 60px;
+    animation: orbFloat 8s ease-in-out infinite reverse;
+}
+
+.profileBannerGrid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.profileCard {
+    background: rgba(13, 15, 23, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 0 24px 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.profileAvatarSection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: -48px;
+    margin-bottom: 16px;
+}
+
+.profileAvatarWrapper {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profileAvatarRing {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    z-index: 0;
+}
+
+.profileAvatarRing::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #0d0f17;
+}
+
+.profileAvatarImage {
+    position: relative;
+    z-index: 1;
+    width: 96px !important;
+    height: 96px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileAvatarFallback {
+    position: relative;
+    z-index: 1;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.connectBtn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+    margin-bottom: 4px;
+}
+
+.connectBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.profileName {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+}
+
+.profileHandle {
+    font-size: 13px;
+    color: #475569;
+    font-family: 'Outfit', sans-serif;
+}
+
+.profileCurrentPost {
+    font-size: 13px;
+    color: #a78bfa;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 2px;
+}
+
+.profileBio {
+    font-size: 14px;
+    color: #94a3b8;
+    font-family: 'Outfit', sans-serif;
+    margin: 6px 0 0;
+    line-height: 1.6;
+    max-width: 480px;
+}
+
+.profileDivider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin-bottom: 20px;
+}
+
+.profileSection {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profileSectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.profileSectionItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.profileSectionItem:hover {
+    background: rgba(124, 58, 237, 0.05);
+    border-color: rgba(124, 58, 237, 0.15);
+}
+
+.profileSectionItemDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.profileSectionItemTitle {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.profileSectionItemSub {
+    display: block;
+    font-size: 12px;
+    color: #475569;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 2px;
+}
+
+.skeletonBanner {
+    width: 100%;
+    height: 200px;
+    border-radius: 18px 18px 0 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+    background-size: 200% auto;
+    animation: shimmerSkeleton 1.6s linear infinite;
+}
+
+.skeletonProfileSection {
+    background: rgba(13, 15, 23, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 20px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.skeletonAvatarLarge {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    margin-top: -48px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+    background-size: 200% auto;
+    animation: shimmerSkeleton 1.6s linear infinite;
+}
+
+.skeletonLines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skeletonLine {
+    height: 12px;
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+    background-size: 200% auto;
+    animation: shimmerSkeleton 1.6s linear infinite;
+}
+
+
+.viewProfileWrapper {
+    padding: 24px 24px 48px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.leftSection {
+    flex: 2;
+}
+
+.rightSidebar {
+    flex: 1;
+    max-width: 320px;
+    position: sticky;
+    top: 80px;
+}
+
+.recentActivityCard {
+    background: rgba(13, 15, 23, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.recentActivityCard h3 {
+    font-size: 14px;
+    color: #e2e8f0;
+    margin-bottom: 12px;
+}
+
+.postItem {
+    background: rgba(255,255,255,0.03);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+@media (max-width: 600px) {
+    .profileBanner { height: 150px; border-radius: 14px 14px 0 0; }
+    .profileCard { border-radius: 0 0 14px 14px; padding: 0 16px 20px; }
+    .profileAvatarWrapper { width: 72px; height: 72px; }
+    .profileAvatarImage { width: 72px !important; height: 72px !important; }
+    .profileAvatarFallback { width: 72px; height: 72px; font-size: 20px; }
+    .profileName { font-size: 18px; }
+    .connectBtn { padding: 8px 14px; font-size: 12px; }
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes shimmerSkeleton {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}
+
+.activityList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.activityItem {
+    padding: 12px 0;
+}
+
+.activityText {
+    font-size: 13px;
+    color: #94a3b8;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.5;
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.activityImageWrap {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.activityImage {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+    display: block;
+}
+
+.activityDivider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    margin-top: 12px;
+}
+
+.noActivity {
+    font-size: 13px;
+    color: #475569;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    padding: 16px 0;
+}
+
+@media (max-width: 768px) {
+    .profileCard {
+        border-radius: 14px;
+    }
+
+    .profileSectionItem {
+        padding: 10px;
+    }
+}
+
+
+.viewProfileWrapper {
+    padding: 24px 24px 48px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.leftSection {
+    flex: 2;
+}
+
+.rightSidebar {
+    flex: 1;
+    max-width: 320px;
+    position: sticky;
+    top: 80px;
+}
+
+.profileBanner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #0d0f17;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+}
+
+.profileBannerGlow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.4) 0%, rgba(192, 38, 211, 0.3) 50%, rgba(124, 58, 237, 0.1) 100%);
+}
+
+.profileBannerOrb1 {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.5) 0%, transparent 70%);
+    top: -80px;
+    left: -40px;
+    animation: orbFloat 6s ease-in-out infinite;
+}
+
+.profileBannerOrb2 {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192, 38, 211, 0.4) 0%, transparent 70%);
+    bottom: -60px;
+    right: 60px;
+    animation: orbFloat 8s ease-in-out infinite reverse;
+}
+
+.profileBannerGrid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.profileCard {
+    background: rgba(13, 15, 23, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 0 24px 24px;
+    backdrop-filter: blur(12px);
+}
+
+.profileAvatarSection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: -48px;
+    margin-bottom: 16px;
+}
+
+.profileAvatarWrapper {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.profileAvatarRing {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+}
+
+.profileAvatarRing::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #0d0f17;
+}
+
+.profileAvatarImage {
+    position: relative;
+    width: 96px !important;
+    height: 96px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileAvatarFallback {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.connectBtn {
+    padding: 9px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.profileName {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+}
+
+.profileBio {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.profileSection {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profileSectionItem {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+.recentActivityCard {
+    background: rgba(13, 15, 23, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.activityList {
+    display: flex;
+    flex-direction: column;
+}
+
+.activityItem {
+    padding: 12px 0;
+}
+
+@media (max-width: 768px) {
+    .viewProfileWrapper {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .leftSection {
+        width: 100%;
+    }
+
+    .rightSidebar {
+        width: 100%;
+        max-width: 100%;
+        position: static;
+    }
+
+    .profileBanner {
+        height: 150px;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .profileCard {
+        border-radius: 0 0 14px 14px;
+        padding: 0 16px 20px;
+    }
+
+    .profileAvatarWrapper {
+        width: 72px;
+        height: 72px;
+    }
+
+    .profileAvatarImage {
+        width: 72px !important;
+        height: 72px !important;
+    }
+
+    .profileAvatarFallback {
+        width: 72px;
+        height: 72px;
+        font-size: 20px;
+    }
+
+    .profileName {
+        font-size: 18px;
+    }
+
+    .connectBtn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .profileSectionItem {
+        padding: 10px;
+    }
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}

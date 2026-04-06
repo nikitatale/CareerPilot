@@ -1,0 +1,263 @@
+.discoverWrapper {
+    padding: 24px 20px 48px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.discoverHeader {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.discoverTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f1f5f9;
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+}
+
+.discoverSubtitle {
+    font-size: 13px;
+    color: #475569;
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+}
+
+.discoverGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.discoverEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 48px 20px;
+    color: #475569;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+}
+
+.userCard {
+    background: rgba(13, 15, 23, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    animation: cardReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.userCard:hover {
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 0 4px 24px rgba(124, 58, 237, 0.1);
+    transform: translateY(-2px);
+}
+
+.userCardMe {
+    border-color: rgba(124, 58, 237, 0.3);
+}
+
+.userCardTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.userCardAvatarWrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.userCardAvatarRing {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    z-index: 0;
+}
+
+.userCardAvatarRing::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: #0d0f17;
+}
+
+.userCardAvatar {
+    position: relative;
+    z-index: 1;
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userCardAvatarFallback {
+    position: relative;
+    z-index: 1;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.userCardMeBadge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #a78bfa;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.userCardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.userCardName {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f1f5f9;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.userCardHandle {
+    font-size: 12px;
+    color: #475569;
+    font-family: 'Outfit', sans-serif;
+}
+
+.userCardCurrentPost {
+    font-size: 12px;
+    color: #a78bfa;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 2px;
+}
+
+.userCardBio {
+    font-size: 12px;
+    color: #64748b;
+    font-family: 'Outfit', sans-serif;
+    margin: 4px 0 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.userCardMeta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #475569;
+    font-size: 12px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.userCardMeta svg {
+    flex-shrink: 0;
+    color: #475569;
+}
+
+.userCardConnectBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    background: rgba(124, 58, 237, 0.08);
+    color: #a78bfa;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    margin-top: 4px;
+}
+
+.userCardConnectBtn:hover {
+    background: rgba(124, 58, 237, 0.18);
+    border-color: rgba(124, 58, 237, 0.5);
+    transform: scale(1.02);
+}
+
+.userCardSkeleton {
+    background: rgba(13, 15, 23, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skeletonAvatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+    background-size: 200% auto;
+    animation: shimmerSkeleton 1.6s linear infinite;
+}
+
+.skeletonLines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skeletonLine {
+    height: 12px;
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+    background-size: 200% auto;
+    animation: shimmerSkeleton 1.6s linear infinite;
+}
+
+@media (max-width: 600px) {
+    .discoverWrapper { padding: 12px 8px 48px; }
+    .discoverGrid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .userCard { border-radius: 14px; padding: 14px 12px; }
+}
+
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmerSkeleton {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}

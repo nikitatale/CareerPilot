@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-grotesk: "Space Grotesk", sans-serif;
+  --font-outfit:  "Outfit", sans-serif;
+}
+
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+@keyframes roleSlide {
+  0%   { opacity: 0; transform: translateY(10px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  85%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+
+.anim-fadeup   { animation: fadeUp 0.6s ease forwards; }
+.anim-float    { animation: floatY 4s ease-in-out infinite; }
+.anim-float2   { animation: floatY 5s ease-in-out 1.4s infinite; }
+.anim-marquee  { animation: marquee 22s linear infinite; }
+.anim-role     { animation: roleSlide 2.2s ease infinite; }
+.anim-blink    { animation: blink 2s infinite; }
+.anim-bglow    { animation: borderGlow 3s ease-in-out infinite; }
+
+
+.anim-shimmer {
+  background: linear-gradient(90deg, #7c3aed, #c026d3, #f59e0b, #7c3aed);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+
+.stat-card { transition: all 0.3s ease; }
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  background: rgba(124, 58, 237, 0.06) !important;
+}
+
+
+.mockup-card {
+  background: #161b27;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.mockup-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,58,237,0.7), rgba(192,38,211,0.7), transparent);
+  animation: borderGlow 3s ease-in-out infinite;
+}
+.mockup-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+
+.chip {
+  background: rgba(15, 17, 23, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 10px;
+  color: #e2e8f0;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+
+.tag-skill {
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-family: 'Outfit', sans-serif;
+}
+
+
+.match-box {
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+
+.logo-item { transition: opacity 0.3s, transform 0.3s; }
+.logo-item:hover {
+  opacity: 0.4 !important;
+  transform: scale(1.06);
+}
