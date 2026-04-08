@@ -26,15 +26,22 @@ app.use(userRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
-const start = async() => {
-    const connectDB = await mongoose.connect(process.env.MONGO_URI);
+const start = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log("MongoDB Connected");
 
-    app.listen(8080, () => {
-        console.log(`Server is running on port ${8080}`);
-    })
-}
+        const PORT = process.env.PORT || 8080;
+
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 start();
-
 
 
