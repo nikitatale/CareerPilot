@@ -116,6 +116,21 @@ export default function DashboardPage() {
     dispatch(getAllComments({ post_id: postState.postId }));
   };
 
+  const formatPostText = (text) => {
+  const words = text.split(" ");
+
+  return words.map((word, i) => {
+    if (word.startsWith("#")) {
+      return (
+        <span key={i} style={{ color: "#0a66c2", fontWeight: "500" }}>
+          {word}{" "}
+        </span>
+      );
+    }
+    return word + " ";
+  });
+};
+
   const handleDeleteComment = async (comment_id) => {
     await dispatch(deleteComment({ comment_id }));
     dispatch(getAllComments({ post_id: postState.postId }));
@@ -323,7 +338,10 @@ export default function DashboardPage() {
                   </div>
                   {post.body && (
                     <div className={styles.postCardBody}>
-                      <p className={styles.postBodyText}>{post.body}</p>
+                      <p className={styles.postBodyText}
+                      style={{ whiteSpace: "pre-line" }}>
+                      {formatPostText(post.body)}
+                      </p>
                     </div>
                   )}
                   {hasImage && post.media && (

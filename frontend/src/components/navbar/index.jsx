@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { reset } from '../../config/redux/reducer/authReducer/index'; 
 import Image from 'next/image';
 import { getMyConnectionRequest } from '../../config/redux/action/authAction';
+import { BASE_URL } from '../../config/index';
 
 export default function Navbar() {
   const router = useRouter();
@@ -51,6 +52,9 @@ export default function Navbar() {
 
 const requestCount = incomingRequests?.length || 0;
 
+const username = authState.user?.userId?.username;
+
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 glass"
@@ -93,17 +97,6 @@ const requestCount = incomingRequests?.length || 0;
         {isLoggedIn ? (
           <>
            
-            {/* <button
-              className="relative p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-all cursor-pointer"
-              onClick={() => 
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-             
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-purple-500 rounded-full"></span>
-            </button> */}
 
             <button
   className="relative p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-all cursor-pointer"
@@ -114,7 +107,7 @@ const requestCount = incomingRequests?.length || 0;
   </svg>
 
   {requestCount > 0 && (
-    <span className="absolute -top-1 -right-1 bg-purple-500 text-[10px] px-1.5 rounded-full">
+    <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-[10px] px-3 rounded-full">
       {requestCount}
     </span>
   )}
@@ -131,10 +124,10 @@ const requestCount = incomingRequests?.length || 0;
                   <Image
                     width={100}
                     height={100}
-                    src={`https://careerpilot-p9bi.onrender.com/uploads/${userPic}`}
+                    src={`${BASE_URL}/uploads/${userPic}`}
                     alt={userName}
                     className="w-8 h-8 rounded-full object-cover border border-purple-500/40"
-                  />
+                  /> 
                 ) : (
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
@@ -162,14 +155,14 @@ const requestCount = incomingRequests?.length || 0;
                   style={{ background: "rgba(15,10,30,0.95)", backdropFilter: "blur(16px)" }}
                 >
                   <button
-                    onClick={() => { router.push("/profile"); setDropdownOpen(false); }}
+                    onClick={() => { router.push(`/view_profile/${username}`); setDropdownOpen(false); }}
                     className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all font-outfit cursor-pointer"
                   >
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
                       <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5"/>
                       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
-                    My Profile
+                    My Profile 
                   </button>
 
                   <button

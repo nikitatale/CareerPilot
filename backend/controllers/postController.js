@@ -96,26 +96,6 @@ export const deletePost = async(req, res) => {
    }
 }
 
-//GET COMMENTS
-// export const getCommentsByPosts = async(req, res) => {
-//     try {
-      
-
-//         const { post_id} = req.query;
-
-//         const post = await Post.findOne({_id: post_id});
-
-//       if (!post) {
-//       return res.status(404).json({ message: "Post not found!" });
-//     }
-
-//     return res.json({comments : post.comments});
-
-
-//     } catch (error) {
-//       return res.status(500).json({message: error.message});
-//     }
-// }
 
 export const getCommentsByPosts = async(req, res) => {
     try {

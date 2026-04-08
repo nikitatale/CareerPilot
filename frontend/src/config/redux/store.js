@@ -5,6 +5,6 @@ import postReducer from "./reducer/postReducer";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    postReducer: postReducer
-  }
-})
+    postReducer: postReducer,
+  },
+});
