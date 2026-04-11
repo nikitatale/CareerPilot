@@ -169,7 +169,7 @@ export const sendConnectionRequest = createAsyncThunk(
 );
 
 
-// Get MY sent requests
+
 export const getConnectionRequest = createAsyncThunk(
   "user/getConnectionRequest",
   async (user, thunkAPI) => {

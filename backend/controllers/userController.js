@@ -7,62 +7,8 @@ import fs from "fs";
 import connectionRequest from "../models/connectionsModel.js";
 import Comment from "../models/commentsModel.js";
 import Post from "../models/postsModel.js";
+import { AppError } from "../middleware/errorHandler.js";
 
-
-// const convertUserDataToPDF = async (userData) => {
-//   const doc = new PDFDocument();
-//   const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
-//   const stream = fs.createWriteStream("uploads/" + outputPath);
-//   doc.pipe(stream);
-
-
-//   doc.fontSize(20).font('Helvetica-Bold').text(`${userData.userId.name}`, { align: 'center' });
-//   doc.fontSize(12).font('Helvetica').text(`@${userData.userId.username}  |  ${userData.userId.email}`, { align: 'center' });
-//   doc.moveDown();
-//   doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
-//   doc.moveDown();
-
-//   if (userData.currentPost) {
-//     doc.fontSize(13).font('Helvetica-Bold').text('Current Position');
-//     doc.fontSize(12).font('Helvetica').text(userData.currentPost);
-//     doc.moveDown();
-//   }
-
-//   if (userData.bio) {
-//     doc.fontSize(13).font('Helvetica-Bold').text('Bio');
-//     doc.fontSize(12).font('Helvetica').text(userData.bio);
-//     doc.moveDown();
-//   }
-
-//   if (userData.pastWork && userData.pastWork.length > 0) {
-//     doc.fontSize(13).font('Helvetica-Bold').text('Work Experience');
-//     userData.pastWork.forEach((work) => {
-//       doc.fontSize(12).font('Helvetica-Bold').text(`${work.company || "N/A"}`, { continued: true });
-//       doc.font('Helvetica').text(`  —  ${work.position || "N/A"}  (${work.years || "N/A"})`);
-//     });
-//     doc.moveDown();
-//   }
-
-//   if (userData.education && userData.education.length > 0) {
-//     doc.fontSize(13).font('Helvetica-Bold').text('Education');
-//     userData.education.forEach((edu) => {
-//       doc.fontSize(12).font('Helvetica-Bold').text(`${edu.school || "N/A"}`, { continued: true });
-//       doc.font('Helvetica').text(`  —  ${edu.degree || "N/A"}${edu.fieldOfStudy ? ', ' + edu.fieldOfStudy : ''}`);
-//     });
-//     doc.moveDown();
-//   }
-
-//   doc.end();
-
-//   return new Promise((resolve, reject) => {
-//     stream.on('finish', () => resolve(outputPath));
-//     stream.on('error', reject);
-//   });
-// };
-
-
-
-// REGISTER
 
 const convertUserDataToPDF = async (userData) => {
   const doc = new PDFDocument();
@@ -182,7 +128,7 @@ export const login = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "User not found!" });
+      throw new AppError("User not found", 404);
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -207,7 +153,7 @@ export const logout = async (req, res) => {
   try {
     const { token } = req.body;
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     user.token = "";
     await user.save();
@@ -226,7 +172,7 @@ export const uploadProfilePicture = async (req, res) => {
     if (!token) return res.status(400).json({ message: "Token required!" });
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     if (!req.file) return res.status(400).json({ message: "Image not uploaded!" });
 
@@ -247,7 +193,7 @@ export const updateUserProfile = async (req, res) => {
     const { token, ...newUserData } = req.body;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const { username, email } = newUserData;
 
@@ -280,7 +226,7 @@ export const getUserAndProfile = async (req, res) => {
     const { token } = req.query;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const userProfile = await Profile.findOne({ userId: user._id })
       .populate("userId", "name email username profilePicture");
@@ -299,7 +245,7 @@ export const updateProfileData = async (req, res) => {
     const { token, ...newProfileData } = req.body;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const profile = await Profile.findOne({ userId: user._id });
     Object.assign(profile, newProfileData);
@@ -333,7 +279,7 @@ export const downloadProfile = async (req, res) => {
       .populate("userId", "name username email profilePicture");
 
     if (!userProfile) {
-      return res.status(404).json({ message: "Profile not found!" });
+      throw new AppError("Profile not found", 404);
     }
 
     let outputPath = await convertUserDataToPDF(userProfile);
@@ -351,10 +297,10 @@ export const sendConnectionRequest = async (req, res) => {
     const { token, connectionId } = req.body;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const connectionUser = await User.findOne({ _id: connectionId });
-    if (!connectionUser) return res.status(404).json({ message: "Connection User not found!" });
+    if (!connectionUser) throw new AppError("Connection User not found", 404);
 
   
     if (String(user._id) === String(connectionUser._id)) {
@@ -393,7 +339,7 @@ export const getMyConnectionRequests = async (req, res) => {
     const token = req.query.token || req.body.token;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const connections = await connectionRequest.find({ userId: user._id })
       .populate("connectionId", "name username email profilePicture");
@@ -413,7 +359,7 @@ export const whatAreMyConnections = async (req, res) => {
     const token = req.query.token || req.body.token;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const connections = await connectionRequest.find({ connectionId: user._id })
       .populate("userId", "name username email profilePicture");
@@ -432,10 +378,10 @@ export const acceptConnectionsRequests = async (req, res) => {
     const { token, requestId, action_type } = req.body;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const connection = await connectionRequest.findOne({ _id: requestId });
-    if (!connection) return res.status(404).json({ message: "Connection not found!" });
+    if (!connection) throw new AppError("Connection not found", 404);
 
    
     if (action_type === "accept" || action_type === "accepted") {
@@ -461,10 +407,10 @@ export const commentPost = async (req, res) => {
     const { token, post_id, commentBody } = req.body;
 
     const user = await User.findOne({ token }).select("_id");
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const post = await Post.findOne({ _id: post_id });
-    if (!post) return res.status(404).json({ message: "Post not found!" });
+    if (!post) throw new AppError("Post not found", 404);
 
     const comment = new Comment({
       userId: user._id,
@@ -487,7 +433,7 @@ export const getUserProfileAndUserBasedOnUsername = async (req, res) => {
 
   try {
     const user = await User.findOne({ username });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     const userProfile = await Profile.findOne({ userId: user._id });
 
@@ -509,7 +455,7 @@ export const getMyAcceptedConnections = async (req, res) => {
     const token = req.query.token || req.body.token;
 
     const user = await User.findOne({ token });
-    if (!user) return res.status(404).json({ message: "User not found!" });
+    if (!user) throw new AppError("User not found", 404);
 
     
     const connections = await connectionRequest.find({

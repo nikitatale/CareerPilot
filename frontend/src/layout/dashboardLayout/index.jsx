@@ -37,6 +37,27 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+
+  {
+    label: "Jobs",
+    route: "/jobs",
+   icon: (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke="currentColor"
+    className={styles.icon}
+  >
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      d="M9 6V5a3 3 0 0 1 6 0v1m-9 0h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 6h12"
+    />
+  </svg>
+),
+  },
 ];
 
 function getInitials(name = "") {

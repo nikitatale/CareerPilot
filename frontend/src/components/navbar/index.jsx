@@ -1,12 +1,13 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react'
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"
 import { useSelector, useDispatch } from 'react-redux';
 import { reset } from '../../config/redux/reducer/authReducer/index'; 
 import Image from 'next/image';
 import { getMyConnectionRequest } from '../../config/redux/action/authAction';
 import { BASE_URL } from '../../config/index';
+import Link from 'next/link';
 
 export default function Navbar() {
   const router = useRouter();
@@ -14,17 +15,16 @@ export default function Navbar() {
 
   const incomingRequests = useSelector((state) => state.auth.incomingRequests);
 
-  const [visible, setVisible]       = useState(false);
+  const [visible, setVisible] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const authState = useSelector((state) => state.auth);
   const isLoggedIn = authState.profileFetched;
-  const userName   = authState.user?.userId?.name;
-  const userPic    = authState.user?.userId?.profilePicture;
+  const userName = authState.user?.userId?.name;
+  const userPic = authState.user?.userId?.profilePicture;
 
   useEffect(() => { setVisible(true); }, []);
-
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -38,29 +38,26 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    dispatch(reset()); 
+    dispatch(reset());
     setDropdownOpen(false);
     router.push("/login");
   };
-  
+
   useEffect(() => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    dispatch(getMyConnectionRequest({ token }));
-  }
-}, [dispatch]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(getMyConnectionRequest({ token }));
+    }
+  }, [dispatch]);
 
-const requestCount = incomingRequests?.length || 0;
-
-const username = authState.user?.userId?.username;
-
+  const requestCount = incomingRequests?.length || 0;
+  const username = authState.user?.userId?.username;
 
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 glass"
       style={{ opacity: visible ? 1 : 0, transition: "opacity 0.8s ease" }}
     >
-     
       <div
         className="flex items-center gap-2.5 cursor-pointer"
         onClick={() => router.push("/")}
@@ -74,7 +71,7 @@ const username = authState.user?.userId?.username;
         >
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
             <path d="M3 13L8 3L13 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M5 9.5H11"        stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M5 9.5H11" stroke="white" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </div>
         <span className="font-grotesk font-bold text-[15px] text-slate-100 tracking-tight">
@@ -82,44 +79,27 @@ const username = authState.user?.userId?.username;
         </span>
       </div>
 
-    
-      {!isLoggedIn &&
-      <div className="hidden md:flex items-center gap-7 text-sm text-slate-500 cursor-pointer">
-        {["Explore Jobs", "Companies", "Network", "Pricing"].map((item) => (
-          <a key={item} href="#" className="nav-link font-outfit">{item}</a>
-        ))}
-      </div>
-      }
-
-     
-      <div className="flex items-center gap-3">
-
+      <div className="flex items-center gap-4">
         {isLoggedIn ? (
           <>
-           
+            <button className="relative p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-all cursor-pointer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
 
-            <button
-  className="relative p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-all cursor-pointer"
->
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+              {requestCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-[10px] px-3 rounded-full">
+                  {requestCount}
+                </span>
+              )}
+            </button>
 
-  {requestCount > 0 && (
-    <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-[10px] px-3 rounded-full">
-      {requestCount}
-    </span>
-  )}
-</button>
-
-            
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-white/10 transition-all cursor-pointer"
               >
-               
                 {userPic ? (
                   <Image
                     width={100}
@@ -127,7 +107,7 @@ const username = authState.user?.userId?.username;
                     src={`${BASE_URL}/uploads/${userPic}`}
                     alt={userName}
                     className="w-8 h-8 rounded-full object-cover border border-purple-500/40"
-                  /> 
+                  />
                 ) : (
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
@@ -139,7 +119,6 @@ const username = authState.user?.userId?.username;
                 <span className="hidden md:block text-sm text-slate-200 font-outfit">
                   {userName || "User"}
                 </span>
-              
                 <svg
                   width="12" height="12" viewBox="0 0 24 24" fill="none"
                   className={`text-slate-400 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
@@ -148,7 +127,6 @@ const username = authState.user?.userId?.username;
                 </svg>
               </button>
 
-            
               {dropdownOpen && (
                 <div
                   className="absolute right-0 mt-2 w-48 rounded-xl border border-white/10 py-1 shadow-xl"
@@ -158,23 +136,13 @@ const username = authState.user?.userId?.username;
                     onClick={() => { router.push(`/view_profile/${username}`); setDropdownOpen(false); }}
                     className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all font-outfit cursor-pointer"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5"/>
-                      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                    My Profile 
+                    My Profile
                   </button>
 
                   <button
                     onClick={() => { router.push("/dashboard"); setDropdownOpen(false); }}
                     className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all font-outfit cursor-pointer"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                      <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                      <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                      <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                      <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                    </svg>
                     Dashboard
                   </button>
 
@@ -182,25 +150,15 @@ const username = authState.user?.userId?.username;
                     onClick={() => { router.push("/settings"); setDropdownOpen(false); }}
                     className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all font-outfit cursor-pointer"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
-                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" strokeWidth="1.5"/>
-                    </svg>
                     Settings
                   </button>
 
-                 
                   <div className="my-1 border-t border-white/10" />
 
                   <button
                     onClick={handleLogout}
                     className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all font-outfit cursor-pointer"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <polyline points="16 17 21 12 16 7"                           stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <line x1="21" y1="12" x2="9" y2="12"                         stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
                     Logout
                   </button>
                 </div>
@@ -209,19 +167,30 @@ const username = authState.user?.userId?.username;
           </>
         ) : (
           <>
-          
-            <button
-              onClick={() => router.push("/login")}
-              className="btn-ghost font-outfit text-sm px-4 py-2 rounded-lg hidden md:block cursor-pointer"
-            >
-              Sign In
-            </button>
-            <button
-              onClick={() => router.push("/register")}
-              className="btn-primary font-outfit text-sm text-white px-5 py-2 rounded-lg font-medium cursor-pointer"
-            >
-              Get Started
-            </button>
+           
+
+       
+<div className="flex items-center gap-8">
+  
+  <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
+    <Link href="/about" className="nav-link font-outfit hover:text-white transition">
+      About Us
+    </Link> &nbsp; &nbsp; &nbsp;
+    <Link href="/features" className="nav-link font-outfit hover:text-white transition">
+      Features
+    </Link> &nbsp; &nbsp; &nbsp;
+  </div>
+
+ 
+
+  <button
+    onClick={() => router.push("/register")}
+    className="btn-primary cursor-pointer font-outfit text-sm text-white px-5 py-2 rounded-lg font-medium"
+  >
+    Sign In
+  </button>
+
+</div>
           </>
         )}
       </div>

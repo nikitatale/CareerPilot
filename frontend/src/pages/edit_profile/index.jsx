@@ -131,7 +131,7 @@ export default function EditProfile() {
           {successMsg && <div className={styles.successAlert}>{successMsg}</div>}
           {errorMsg && <div className={styles.errorAlert}>{errorMsg}</div>}
 
-          {/* Profile Picture */}
+         
           <div className={styles.pfpSection}>
             <div className={styles.pfpWrapper}>
               {pfpSrc ? (
@@ -159,7 +159,7 @@ export default function EditProfile() {
             </div>
           </div>
 
-          {/* Tabs */}
+          
           <div className={styles.tabs}>
             {[["basic","Basic Info"],["profile","Profile"],["work","Work Experience"],["education","Education"]].map(([tab, label]) => (
               <button key={tab} className={`${styles.tab} ${activeTab === tab ? styles.tabActive : ""}`} onClick={() => setActiveTab(tab)}>

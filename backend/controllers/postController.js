@@ -1,3 +1,4 @@
+import { AppError } from "../middleware/errorHandler.js";
 import Comment from "../models/commentsModel.js";
 import Post from "../models/postsModel.js";
 import User from "../models/userModel.js";
@@ -17,7 +18,7 @@ export const createPost = async(req, res) => {
    const user = await User.findOne({ token });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found!" });
+      throw new AppError("User not found", 404);
     }
 
     const post = new Post({
@@ -74,13 +75,13 @@ export const deletePost = async(req, res) => {
 
 
     if (!user) {
-      return res.status(404).json({ message: "User not found!" });
+      throw new AppError("User not found", 404);
     }
 
     const post = await Post.findOne({_id: post_id});
 
      if (!post) {
-      return res.status(404).json({ message: "Post not found!" });
+      throw new AppError("Post not found", 404);
     }
 
     if(post.userId.toString() !== user._id.toString()){
@@ -103,7 +104,7 @@ export const getCommentsByPosts = async(req, res) => {
 
         const post = await Post.findOne({_id: post_id});
         if (!post) {
-            return res.status(404).json({ message: "Post not found!" });
+            throw new AppError("Post not found", 404);
         }
 
    
@@ -129,7 +130,7 @@ export const deleteCommentOfUser = async(req, res) => {
 
 
     if (!user) {
-      return res.status(404).json({ message: "User not found!" });
+      throw new AppError("User not found", 404);
     }
       
 
@@ -137,7 +138,7 @@ export const deleteCommentOfUser = async(req, res) => {
    
    
    if (!comment) {
-      return res.status(404).json({ message: "Comment not found!" });
+      throw new AppError("Comment not found", 404);
     }
 
 
@@ -164,7 +165,7 @@ export const incrementLikes = async(req, res) => {
       const post = await Post.findOne({_id: post_id});
 
       if(!post){
-         return res.status(404).json({message: "Post not found!"});
+        throw new AppError("Post not found", 404);
       }
 
       post.likes = post.likes + 1;

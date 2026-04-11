@@ -54,7 +54,7 @@
   margin-bottom: 16px;
 }
 
-/* Profile Picture Section */
+
 .pfpSection {
   display: flex;
   align-items: center;
@@ -245,7 +245,7 @@
 .saveBtn:hover { opacity: 0.85; }
 .saveBtn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* Entry cards (work/education) */
+
 .entryCard {
   background: rgba(15, 12, 30, 0.6);
   border: 1px solid rgba(124, 58, 237, 0.15);
