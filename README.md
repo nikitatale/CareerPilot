@@ -1,7 +1,7 @@
-# 💼 CareerPilot - Professional Networking Platform
+# 💼 CareerPilot - AI-Powered Career Platform
 
-> **CareerPilot** is a modern professional networking platform where users can connect, share, and grow their careers.
-> Create profiles, connect with others, and explore opportunities - all in one place.
+> **CareerPilot is a modern career platform designed to help users discover opportunities, build professional profiles, and explore jobs using intelligent search.
+> From networking to AI-powered job discovery — everything is built to simplify your career journey.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-career--pilot.vercel.app-blue?style=for-the-badge)](https://career-pilot-omega.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-nikitatale-black?style=for-the-badge\&logo=github)](https://github.com/nikitatale/CareerPilot)
@@ -19,6 +19,7 @@
 
 | Feature                            | Description                                                   |
 | ---------------------------------- | ------------------------------------------------------------- |
+| 🤖 **AI Job Search**               | Search jobs using natural language like "MERN developer fresher remote" |
 | 👤 **User Profiles**               | Create and manage professional profiles with profile pictures |
 | 🤝 **Connect with Professionals**  | Send & manage connection requests                             |
 | 📰 **Feed System**                 | View and interact with posts from your network                |
@@ -36,6 +37,8 @@
 Frontend   → Next.js 16, React 19, Tailwind CSS, Redux Toolkit
 Backend    → Node.js, Express v5
 Database   → MongoDB, Mongoose
+AI         → Groq (LLaMA 3)
+Jobs API   → JSearch (RapidAPI)
 Auth       → bcrypt
 File Upload → Multer
 PDF        → pdfkit, pdf-creator-node
@@ -76,6 +79,8 @@ Create `.env` in `/backend`:
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 PORT=8080
+GROQ_API_KEY=your_groq_api_key
+JSEARCH_API_KEY=your_rapidapi_key
 ```
 
 ```bash
@@ -129,7 +134,9 @@ CareerPilot/
 
 ## 💡 Key Learnings & Challenges
 
-* Built a **full-stack MERN application** with real-world architecture
+* Built **full-stack MERN application** with AI integration
+* Implemented natural language → structured query parsing
+* Integrated third-party APIs (Jobs + AI)
 * Implemented **file uploads using Multer**
 * Handled **secure authentication & password hashing**
 * Managed **API integration between Next.js frontend and Express backend**
