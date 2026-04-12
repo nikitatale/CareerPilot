@@ -1,7 +1,7 @@
 # 💼 CareerPilot - AI-Powered Career Platform
 
 > **CareerPilot** is a modern career platform designed to help users discover opportunities, build professional profiles, and explore jobs using intelligent search.
-> From networking to AI-powered job discovery — everything is built to simplify your career journey.
+> From networking to AI-powered job discovery - everything is built to simplify your career journey.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-career--pilot.vercel.app-blue?style=for-the-badge)](https://career-pilot-omega.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-nikitatale-black?style=for-the-badge\&logo=github)](https://github.com/nikitatale/CareerPilot)
@@ -147,7 +147,8 @@ CareerPilot/
 ## 👩‍💻 About the Developer
 
 **Nikita Tale** - Full-Stack Developer (MERN Stack)
-📧 Open to work! Let's connect →
+* Open to work!!! 
+* Let's connect →
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://www.linkedin.com/in/nikita-tale)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?logo=github)](https://github.com/nikitatale)
