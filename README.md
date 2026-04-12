@@ -47,6 +47,49 @@ Deployment → Vercel (Frontend), Render (Backend)
 ```
 
 ---
+ 
+## 🏗️ Architecture
+ 
+```
+┌─────────────────────────────────────┐
+│         Next.js Frontend            │
+│   Pages Router · Redux Toolkit      │
+│   Tailwind CSS · Axios              │
+└──────────────┬──────────────────────┘
+               │ REST API
+┌──────────────▼──────────────────────┐
+│         Express Backend             │
+│   Auth Middleware · Error Handler   │
+│   Multer · pdfkit                   │
+└──────┬───────────────┬──────────────┘
+       │               │
+┌──────▼──────┐  ┌─────▼──────────────┐
+│   MongoDB   │  │   External APIs    │
+│  Mongoose   │  │  Groq · JSearch    │
+└─────────────┘  └────────────────────┘
+```
+
+---
+
+## 🤖 How AI Job Search Works
+ 
+```
+User types: "MERN developer fresher remote"
+           ↓
+Groq LLaMA 3.3 parses intent →
+{
+  title: "MERN developer",
+  skills: ["MongoDB", "Express", "React", "Node.js"],
+  experienceLevel: "fresher",
+  isRemote: true
+}
+           ↓
+JSearch RapidAPI fetches real listings
+           ↓
+Results scored by relevance + rendered as job cards
+           ↓
+Apply button → original company job posting
+```
 
 ## 🚀 Getting Started Locally
 
