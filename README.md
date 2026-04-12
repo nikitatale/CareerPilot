@@ -1,6 +1,6 @@
 # 💼 CareerPilot - AI-Powered Career Platform
 
-> **CareerPilot is a modern career platform designed to help users discover opportunities, build professional profiles, and explore jobs using intelligent search.
+> **CareerPilot** is a modern career platform designed to help users discover opportunities, build professional profiles, and explore jobs using intelligent search.
 > From networking to AI-powered job discovery — everything is built to simplify your career journey.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-career--pilot.vercel.app-blue?style=for-the-badge)](https://career-pilot-omega.vercel.app)
