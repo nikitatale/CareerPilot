@@ -1,3 +1,4 @@
+import { AppError } from "../middleware/errorHandler.js";
 import User from "../models/userModel.js";
 
 
@@ -190,6 +191,8 @@ export const updateNotificationPrefs = async (req, res, next) => {
 
 export const getSettings = async (req, res, next) => {
   try {
+    console.log("REQ USER:", req.user);
+console.log("AUTH HEADER:", req.headers.authorization);
     const user = await User.findById(req.user._id)
       .select("settings name email avatar")
       .lean();
@@ -269,7 +272,7 @@ export const updateAccount = async (req, res, next) => {
 export const deactivateAccount = async (req, res, next) => {
   try {
     await User.findByIdAndUpdate(req.user._id, {
-      $set: { isActive: false, deactivatedAt: new Date() },
+     $set: { active: false, deactivatedAt: new Date() }
     });
 
     return res.status(200).json({

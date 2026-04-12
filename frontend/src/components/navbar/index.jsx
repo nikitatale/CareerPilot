@@ -79,7 +79,7 @@ export default function Navbar() {
         </span>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center">
         {isLoggedIn ? (
           <>
             <button className="relative p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-all cursor-pointer">
@@ -169,28 +169,27 @@ export default function Navbar() {
           <>
            
 
-       
-<div className="flex items-center gap-8">
+<div className="flex items-center">
   
-  <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
+  <div className="hidden md:flex items-center gap-10 text-sm text-slate-400">
     <Link href="/about" className="nav-link font-outfit hover:text-white transition">
-      About Us
-    </Link> &nbsp; &nbsp; &nbsp;
+      About Us &nbsp; &nbsp;
+    </Link> 
     <Link href="/features" className="nav-link font-outfit hover:text-white transition">
-      Features
-    </Link> &nbsp; &nbsp; &nbsp;
+      Features &nbsp; &nbsp;
+    </Link> 
   </div>
-
- 
 
   <button
     onClick={() => router.push("/register")}
-    className="btn-primary cursor-pointer font-outfit text-sm text-white px-5 py-2 rounded-lg font-medium"
+    className="btn-primary ml-8 cursor-pointer font-outfit text-sm text-white px-5 py-2 rounded-lg font-medium"
   >
     Sign In
   </button>
 
-</div>
+</div>       
+
+
           </>
         )}
       </div>

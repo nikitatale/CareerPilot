@@ -1,8 +1,9 @@
 import Groq from "groq-sdk";         
 import axios from "axios";
-import Job from "../models/job.js";
+
 import { AppError } from "../middleware/errorHandler.js";
 import dotenv from "dotenv";
+import Job from "../models/job.js";
 
 dotenv.config();
 

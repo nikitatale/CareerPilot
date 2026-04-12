@@ -40,6 +40,14 @@ app.use("/api/settings", settingsRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+
+app.all("/*splat", (req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: `Route not found: ${req.originalUrl}`,
+  });
+});
+
 app.use(errorHandler);
 
 app.use((err, req, res, next) => {
